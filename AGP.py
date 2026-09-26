@@ -1,7 +1,7 @@
 import random
 import hashlib
 import os
-
+import colorama
 
 def generate_seed():
     raw = os.urandom(32)
@@ -61,17 +61,17 @@ def pick(elements, seed_str=None):
 
 def main():
 	try:
-		n = int(input("Сколько элементов? (int): "))
+		n = int(input(f"Сколько элементов? {colorama.Fore.BLUE}(int):{colorama.Fore.RESET} "))
 	except ValueError:
-		print("Нужно ввести целое число. Попробуйте еще раз!")
+		print(f"{colorama.Fore.RED}Нужно ввести целое число. {colorama.Fore.WHITE}Попробуйте еще раз!")
 		exit()
     
 	elements = [input(f"Элемент {i+1}: ") for i in range(n)]
 	winner, seed, buckets = pick(elements)
 
 	print('-----------')
-	print("Сгенерированный сид:", seed)
-	print("Размеры бакетов:", [len(b) for b in buckets])
+	print(f"{colorama.Fore.GREEN}Сгенерированный сид:{colorama.Fore.WHITE}", seed)
+	print(f"{colorama.Fore.YELLOW}Размеры бакетов:{colorama.Fore.WHITE}", [len(b) for b in buckets])
 	print('-----------')
 	print("Победитель:", winner)
 
